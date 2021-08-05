@@ -1,7 +1,5 @@
 create table trade (
-	id bigint auto_increment not null,
+	id serial bigint not null primary key,
 	exp_difference bigint not null,
-	verdict varchar(15) not null,
-
-	primary key (id)
+	verdict varchar(15) not null
 );
