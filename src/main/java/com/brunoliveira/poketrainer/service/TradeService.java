@@ -1,5 +1,6 @@
 package com.brunoliveira.poketrainer.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,14 @@ public class TradeService {
 		
 		Trade trade =  new Trade();
 		
+		
 		int totalExperience1 = 0;
 		int totalExperience2 = 0;
 		int totalExperience = 0;
+		
+		List<String> pokemonTradeList1 = new ArrayList();
+		List<String> pokemonTradeList2 = new ArrayList();
+	
 		
 		
 		Pokemon[] pokeList1 = tradeDtoList[0].getPokemonList();
@@ -37,12 +43,18 @@ public class TradeService {
 		for (Pokemon pokemon : pokeList1) {
 			
 			totalExperience1 += pokemon.getExperience();
+			pokemonTradeList1.add(pokemon.getName());
+			
 		}
 		
-		for (Pokemon pokemon : pokeList2) {
-			
+		
+		for (Pokemon pokemon : pokeList2) {		
 			totalExperience2 += pokemon.getExperience();
+			pokemonTradeList2.add(pokemon.getName());
 		}
+		trade.setFirstList(String.join(", ", pokemonTradeList1));
+		trade.setSecondList(String.join(", ", pokemonTradeList2));
+		trade.setUserName(tradeDtoList[0].getUserName());
 		
 		totalExperience = Math.abs(totalExperience1 - totalExperience2);
 		if(totalExperience > 100) {

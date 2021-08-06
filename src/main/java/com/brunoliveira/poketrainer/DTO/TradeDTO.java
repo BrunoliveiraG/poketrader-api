@@ -6,19 +6,20 @@ import com.brunoliveira.poketrainer.model.Pokemon;
 
 public class TradeDTO {
 	
-	private String tradeName;
+	private String userName;
 	private Pokemon[] pokemonList;
-	public String getTradeName() {
-		return tradeName;
-	}
-	public void setTradeName(String tradeName) {
-		this.tradeName = tradeName;
-	}
+
 	public Pokemon[] getPokemonList() {
 		return pokemonList;
 	}
 	public void setPokemonList(Pokemon[] pokemonList) {
 		this.pokemonList = pokemonList;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

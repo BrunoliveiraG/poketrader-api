@@ -22,6 +22,15 @@ public class Trade {
 	
 	@Column(name = "verdict")
 	private String verdict;
+	
+	@Column(name= "first_list")
+	private String firstList;
+	
+	@Column(name= "second_list")
+	private String secondList;
+	
+	@Column(name = "user_name")
+	private String userName;
 
 	public Long getId() {
 		return id;
@@ -47,6 +56,30 @@ public class Trade {
 		this.verdict = verdict;
 	}
 
+	public String getFirstList() {
+		return firstList;
+	}
+
+	public void setFirstList(String firstList) {
+		this.firstList = firstList;
+	}
+
+	public String getSecondList() {
+		return secondList;
+	}
+
+	public void setSecondList(String secondList) {
+		this.secondList = secondList;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -63,6 +96,9 @@ public class Trade {
 		Trade other = (Trade) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+
+	
 	
 	
 }
