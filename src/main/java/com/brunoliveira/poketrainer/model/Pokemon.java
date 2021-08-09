@@ -6,7 +6,7 @@ public class Pokemon {
 		
 	private String name;
 	
-	private Integer experience;
+	private Integer base_experience;
 
 	public String getName() {
 		return name;
@@ -16,14 +16,15 @@ public class Pokemon {
 		this.name = name;
 	}
 
-	public Integer getExperience() {
-		return experience;
+	public Integer getBase_experience() {
+		return base_experience;
 	}
 
-	public void setExperience(Integer experience) {
-		this.experience = experience;
+	public void setBase_experience(Integer base_experience) {
+		this.base_experience = base_experience;
 	}
 
+	
 	
 		
 }
