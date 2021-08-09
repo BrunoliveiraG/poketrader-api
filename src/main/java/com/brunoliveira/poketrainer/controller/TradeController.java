@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +33,11 @@ public class TradeController {
 	public Trade addTrade (@RequestBody TradeDTO[] tradeDtoList) {
 		
 		return tradeService.addNewTrade(tradeDtoList);
+	}
+	
+	@DeleteMapping
+	public List<Trade> removeAllTrades(){
+		return tradeService.removeAllTrades();
 	}
 
 }
