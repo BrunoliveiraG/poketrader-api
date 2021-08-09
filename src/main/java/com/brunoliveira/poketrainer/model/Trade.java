@@ -29,8 +29,11 @@ public class Trade {
 	@Column(name= "second_list")
 	private String secondList;
 	
-	@Column(name = "user_name")
-	private String userName;
+	@Column(name = "user_name_one")
+	private String userNameOne;
+	
+	@Column(name = "user_name_two")
+	private String userNameTwo;
 
 	public Long getId() {
 		return id;
@@ -72,12 +75,22 @@ public class Trade {
 		this.secondList = secondList;
 	}
 
-	public String getUserName() {
-		return userName;
+
+
+	public String getUserNameOne() {
+		return userNameOne;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserNameOne(String userNameOne) {
+		this.userNameOne = userNameOne;
+	}
+
+	public String getUserNameTwo() {
+		return userNameTwo;
+	}
+
+	public void setUserNameTwo(String userNameTwo) {
+		this.userNameTwo = userNameTwo;
 	}
 
 	@Override

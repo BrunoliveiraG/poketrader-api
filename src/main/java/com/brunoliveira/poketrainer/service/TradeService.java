@@ -42,19 +42,20 @@ public class TradeService {
 		
 		for (Pokemon pokemon : pokeList1) {
 			
-			totalExperience1 += pokemon.getExperience();
+			totalExperience1 += pokemon.getBase_experience();
 			pokemonTradeList1.add(pokemon.getName());
 			
 		}
 		
 		
 		for (Pokemon pokemon : pokeList2) {		
-			totalExperience2 += pokemon.getExperience();
+			totalExperience2 += pokemon.getBase_experience();
 			pokemonTradeList2.add(pokemon.getName());
 		}
 		trade.setFirstList(String.join(", ", pokemonTradeList1));
 		trade.setSecondList(String.join(", ", pokemonTradeList2));
-		trade.setUserName(tradeDtoList[0].getUserName());
+		trade.setUserNameOne(tradeDtoList[0].getUserName());
+		trade.setUserNameTwo(tradeDtoList[1].getUserName());
 		
 		totalExperience = Math.abs(totalExperience1 - totalExperience2);
 		if(totalExperience > 100) {
