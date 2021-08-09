@@ -24,51 +24,54 @@ public class TradeService {
 
 	public Trade addNewTrade(TradeDTO[] tradeDtoList) {
 		
-		
 		Trade trade =  new Trade();
-		
-		
-		int totalExperience1 = 0;
-		int totalExperience2 = 0;
-		int totalExperience = 0;
-		
-		List<String> pokemonTradeList1 = new ArrayList();
-		List<String> pokemonTradeList2 = new ArrayList();
-	
-		
 		
 		Pokemon[] pokeList1 = tradeDtoList[0].getPokemonList();
 		Pokemon[] pokeList2 = tradeDtoList[1].getPokemonList();
 		
-		for (Pokemon pokemon : pokeList1) {
-			
-			totalExperience1 += pokemon.getBase_experience();
-			pokemonTradeList1.add(pokemon.getName());
-			
-		}
-		
-		
-		for (Pokemon pokemon : pokeList2) {		
-			totalExperience2 += pokemon.getBase_experience();
-			pokemonTradeList2.add(pokemon.getName());
-		}
-		trade.setFirstList(String.join(", ", pokemonTradeList1));
-		trade.setSecondList(String.join(", ", pokemonTradeList2));
+		trade.setExpDifference(calculateExperienceDifference(getTotalExperience(pokeList1), getTotalExperience(pokeList2)));	
+		trade.setFirstList(String.join(", ", getPokemonNameList(pokeList1)));
+		trade.setSecondList(String.join(", ", getPokemonNameList(pokeList2)));
 		trade.setUserNameOne(tradeDtoList[0].getUserName());
 		trade.setUserNameTwo(tradeDtoList[1].getUserName());
-		
-		totalExperience = Math.abs(totalExperience1 - totalExperience2);
-		if(totalExperience > 100) {
-			trade.setVerdict("Bad Trade!");
-		}
-		else {
-			trade.setVerdict("Good Trade!");
-		}
-		trade.setExpDifference(totalExperience);
+		trade.setVerdict(getVerdictMessage(trade.getExpDifference()));
 		
 		return tradeRepository.save(trade);
 	}
+	
+	private Integer getTotalExperience(Pokemon[] pokemonList) {
+		Integer totalExperience = 0;
+		for (Pokemon pokemon : pokemonList) {	
+			totalExperience += pokemon.getBase_experience();
+		}
+		return totalExperience;
+	}
+	
+	private Integer calculateExperienceDifference(Integer listOne, Integer listTwo) {
+		return Math.abs(listOne - listTwo);
+	}
+	
+	private List<String> getPokemonNameList(Pokemon[] pokemonList){
+		List<String> pokemonNameList = new ArrayList();
+		for (Pokemon pokemon: pokemonList) {
+			pokemonNameList.add(pokemon.getName());
+		}
+		return pokemonNameList;
+	}
 
+	private String getVerdictMessage(Integer experienceDifference) {
+		if(experienceDifference > 100) {
+			return "Bad Trade";
+		}
+		else {
+			return "Good Trade!";
+		}
+	}
+	
+	public List<Trade> removeAllTrades() {
+		tradeRepository.deleteAll();
+		return tradeRepository.findAll();
+	}
 	
 	
 }
